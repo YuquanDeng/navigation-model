@@ -135,6 +135,7 @@ I would like to try predicting different output instead. For example, insteading
 Comparing with Behavior Cloning method, goal-conditioned model is very helpful for learn the pattern betwen the current observation and the goal image and output a more reasonable command. Even though the dataset is very small for training the model, it shows some sign the model is working for generalizing to more environments since the output actions is literally close to 0 when the current observation and the goal image share lots of features. 
 
 # Video
+Checkout the link: https://drive.google.com/file/d/1HJX3EfSWIU7owJA6ilkUkRK_OODA6H5v/view?usp=drive_link
 
 
 
