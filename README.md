@@ -93,6 +93,8 @@ In order to give a more rigorous explanation, I plot both the steering angle and
 <em> Steering Angle vs. Time </em>
 </div>
 
+As the figures shown above, the part 1 and part 2 are the name of the directory of dataset. If we relate the steering angle vs. time figure with the predicted steering angle vs. true steering angle, where the positive value of the steering angle means turning left and the negative value of the steering angle means turning right, we know that the frequency of the turning right is much less than that of turning left. That means there aren't sufficient and valid data in the dataset for training with predicting turning left command. Another conclusion we can make is that we can notice that most of turning angle command is within the range between -0.25 and 0.25, which means most of the time the legged robot only turn slightly and those values are very close to 0. That explains the pattern where the true steering angle is zero but the predicted angle is nonzero.
+
 
 #### (2) Short Goal Image is crucial but challenging to choose.
 
