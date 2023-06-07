@@ -1,49 +1,27 @@
-# Mobile Manipulation
-
-## Installation
-
-### habitat-sim
-Setup the habitat simulation environment by following the issue https://github.com/facebookresearch/habitat-sim/issues/2049
-
-After setting up the habitat simulation environment, install the require packages as below:
-<pre> <code>
-cd mobile-manipulation/
-conda activate habitat
-pip install -r requirements.txt
-</code> </pre>
-
-### Update simulation environment
-You can update the submodule to the latest version by running the command:
-<pre> <code>
-git submodule update --remote
-</code> </pre>
-
-Run the following command after cloned the repository.
-<pre> <code>
-git submodule update --init --recursive
-</code> </pre>
+Problem description
+Previous work (including what you used for your method i.e. pretrained models)
+Your approach
+Datasets
+Results
+Discussion
+What problems did you encounter?
+Are there next steps you would take if you kept working on the project?
+How does your approach differ from others? Was that beneficial?
 
 
-## Testing
-### Non-interactive testing
+Noted that I am ending up finishing a project that is different from what I submit in the project propasal. The following are the overall description of my project. 
 
-<pre> <code>
-cd mobile-manipulation/simulation/
-python ./habitat-sim/examples/example.py --scene ./data/scene_datasets/habitat-test-scenes/skokloster-castle.glb
-</code> </pre>
+# Problem Description
+- The problem statement is sovling a navigation task that given a video of the observation of the trajectory, the robot will be able to navigate from its current position to the goal position.
+
+- As the figure 1 shown below, the red point is the current position of the mobile robot and the blue point is the goal position. The green curve is a series of images in the video recorded from the camera of the mobile robot or other agents.
+<div align="center">
+<img width="408" alt="image" src="https://github.com/YuquanDeng/navigation-model/assets/88260334/4c2197b4-213c-4470-b3b2-d1266533940e">
+</div>
+<div align="center">
+<em>figure 1: Image Navigation Task</em>
+</div>
 
 
 
-## Load dataset, Train model, Save model, and Log result.
-- `run_experiment.py` is the python script that contains the pipeline of loading dataset, training model, saving model, and logging results.
-- `run_experiment.py` will load the configuration in `conf/config.yaml`. So far all the configs have default values, so keep in mind what the default values are when running
-<pre> <code>
-cd mobile-manipulation/scripts/
-python3 run_experiment.py 
-</code> </pre>
-without specifying any change of the configurations.
 
-- For any customized change of the configuration, we can run:
-<pre> <code>
-python3 run_experiment.py preprocessed_features=true preprocessed_dataset=true
-</code> </pre>
