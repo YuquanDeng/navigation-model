@@ -1,5 +1,19 @@
 Noted that I am ending up finishing a project that is different from what I submit in the project propasal. The following are the overall description of my project. 
 
+# CodeBase Explanation
+- The `conf` direcotry contains the configuration that used in training the model and running in the simulation environment.
+- `conf_outputs` directory contains the checkpoint of the model as well as the experiment result in the `metric` directory.
+- `infrastructure` directory contains all the utils code for training and evaluating models.
+- `policies` directory contains the 4 FC layers architecture in `MLP_policy.py`.
+- 'scripts' direcotry contains training model pipeline in `run_experiment.py` and evaluation pipeline including running in the simulation environment and logging result in `evaluate_policy.py`.
+- `simulation` directory contains the simulation code for kick off the simulatione environment in `simulator.py`. Other files or directory under the `simulation` directory are either the data need for rendering the simulation or tutorial code for learning the simulation environment.
+- `test` directory contains the testing code for making sure the components code in the pipeline is correct.
+- Noted that Except the `pytorch_utils.py` is taken from UCB cs285 homework 1, I wrote all the rest of the code in the Code base.
+
+
+
+
+
 # Problem Description
 - The problem statement is sovling a navigation task that given a video of the observation of the trajectory, the robot will be able to navigate from its current position to the goal position.
 
