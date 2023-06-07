@@ -1,14 +1,3 @@
-[x] Problem description
-Previous work (including what you used for your method i.e. pretrained models)
-Your approach
-Datasets
-Results
-Discussion
-What problems did you encounter?
-Are there next steps you would take if you kept working on the project?
-How does your approach differ from others? Was that beneficial?
-
-
 Noted that I am ending up finishing a project that is different from what I submit in the project propasal. The following are the overall description of my project. 
 
 # Problem Description
@@ -97,25 +86,41 @@ As the figures shown above, the part 1 and part 2 are the name of the directory 
 
 
 #### (2) Short Goal Image is crucial but challenging to choose.
-
+When I deploy the model in the simulation environment, Another problem is hot to choose the next short goal image since the short goal image is coming from the prerecorded reference trajectory. The trained model doesn't contain any information about the distance between current observation and the short goal image, so I use the condition that if the output command is small enough(within a threshold), then I update the short goal image to the next one. This heuristics is hard to adapt in different environments especially for the case when the robot deviating from the trajectory and it is rarely to recover from that. That means I need a better mechanism to choose short goal image.
 
 
 # What problems did you encounter?
-(1) bug in the MLP
-(2) alway outputing the same action
+<p>
+The first problem I encounter is the result I got from the graph predicted steering angle vs. acutal steering angle isn't quite right. Specifically, the prediction is never output negative value steering angle. Eventually I realize there is a bug in my 4 FC layers implementation, I mistakenly apply ReLU in the output, which makes the model only outputs positive value. 
+ </p>
+ 
+ <p>
+ The second problem I had is after I deploy the model in the simulation environment, I realized the model will only output the same actions, which is very strange. It is also painful to debug since the pipeline is very complex and it is hard to tell which part went wrong. I spent almost two weeks only debugging this and finally figured out I use np.reshape for changing the dimension instead of tranpose, which mess up the dimensions of image feed in to the model and result in the same output actions. 
+ </p>
 
 # Are there next steps you would take if you kept working on the project?
-(1) if want to generalize to more agent, should normalize velocity
-(2) try predicting something else, sin, cos of theta, and the distance between observation and goal image
-(4) should run it in a more realistic environment 
+By carrying on the points I elaborate in Discussion section, The next steps that I can do are the following:
+
+#### Train the model in a more comprehensive and high quality dataset
+<p>
+ As we have already discussed in the Result Section and Discussion Section, we can conclude how important the quality of the dataset will affect the performance of model especially in evaluating its robustness. I should train the model with more data. For example, I can try to train the model with GO-Standard dataset. 
+ </p>
+
+#### Modify the structure of the model.
+<p>
+I would like to try predicting different output instead. For example, insteading of predicting velocity and theta, I want the model also learn the distance between current observation and the goal image. That is, predicting velocity, theta, distance. Also, another choice can be predicting sin(theta) and cos(theta) instead of theta directly and comparing the performance between the models with different outputs. For better generalize to other mobile robot, I should also try training the model with normalized velocity.
+</p>
+
+#### Use more suitable Simulation Environment
+<p>
+ The model is too pre-mature to run in a unseen environment and deploy it into another robot. I should choose a better simulation environment to measure the performance of model and makes the evaluation more statistically meaningful.
+ </p>
+
+
 # How does your approach differ from others? Was that beneficial?
-Concanate short goal image is definitely help
+Comparing with Behavior Cloning method, goal-conditioned model is very helpful for learn the pattern betwen the current observation and the goal image and output a more reasonable command. Even though the dataset is very small for training the model, it shows some sign the model is working for generalizing to more environments since the output actions is literally close to 0 when the current observation and the goal image share lots of features. 
 
-
-citation
-
-change the github repo
-record video
+# Video
 
 
 
